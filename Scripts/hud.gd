@@ -1,7 +1,8 @@
 class_name HUD extends Control
-## Mostra os cafés coletados, a fase atual e os avisos no meio da tela
+## Mostra os cafés coletados e a fase atual na barra azul do topo,
+## e os avisos (LEVEL, BOSS INCOMING!) no meio da tela.
 
-@onready var coffe_couter: Label = $container/coffe_container/coffe_couter
+@onready var coffe_couter: Label = $coffe_couter
 @onready var fase_label: Label = $fase_label
 @onready var aviso_label: Label = $aviso_label
 

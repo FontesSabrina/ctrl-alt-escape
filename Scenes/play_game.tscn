@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bfg0rbm2vvhlt"]
+[gd_scene load_steps=18 format=3 uid="uid://bfg0rbm2vvhlt"]
 
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_game"]
 [ext_resource type="Texture2D" uid="uid://dcgjy73hwa2db" path="res://Assets/background/background_jogo.png" id="1_s2hxh"]
@@ -15,6 +15,10 @@
 [ext_resource type="PackedScene" uid="uid://dc3fjhiwqg25j" path="res://Prefabs/object_2.tscn" id="11_2l8d2"]
 [ext_resource type="PackedScene" uid="uid://1dism6njthey" path="res://Prefabs/object_3.tscn" id="12_us15c"]
 [ext_resource type="PackedScene" uid="uid://dwnp00tl1u7b7" path="res://Prefabs/object_4.tscn" id="13_obj4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cafe"]
+atlas = ExtResource("10_ryx4f")
+region = Rect2(9, 2, 19, 25)
 
 [node name="game" type="Control"]
 layout_mode = 3
@@ -64,44 +68,50 @@ offset_bottom = 40.0
 mouse_filter = 2
 script = ExtResource("9_e1rsh")
 
-[node name="container" type="MarginContainer" parent="HUD/control"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-mouse_filter = 2
-
-[node name="coffe_container" type="HBoxContainer" parent="HUD/control/container"]
-layout_mode = 2
-size_flags_vertical = 0
-mouse_filter = 2
-
-[node name="coffe_icon" type="TextureRect" parent="HUD/control/container/coffe_container"]
-layout_mode = 2
-size_flags_vertical = 0
-mouse_filter = 2
-texture = ExtResource("10_ryx4f")
-
-[node name="coffe_couter" type="Label" parent="HUD/control/container/coffe_container"]
+[node name="coffe_icon" type="TextureRect" parent="HUD/control"]
 texture_filter = 1
-layout_mode = 2
-theme_override_constants/outline_size = 8
+layout_mode = 0
+offset_left = 4.0
+offset_top = 3.0
+offset_right = 16.0
+offset_bottom = 18.0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_cafe")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="coffe_couter" type="Label" parent="HUD/control"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 19.0
+offset_top = 2.0
+offset_right = 79.0
+offset_bottom = 19.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("11_gbkaj")
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 11
 text = "0000"
+vertical_alignment = 1
 
 [node name="fase_label" type="Label" parent="HUD/control"]
+texture_filter = 1
 layout_mode = 0
-offset_left = 80.0
-offset_top = 5.0
-offset_right = 170.0
-offset_bottom = 21.0
+offset_left = 90.0
+offset_top = 2.0
+offset_right = 182.0
+offset_bottom = 19.0
 mouse_filter = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 6
+theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("11_gbkaj")
 theme_override_font_sizes/font_size = 11
 text = "LEVEL 1"
 horizontal_alignment = 2
+vertical_alignment = 1
 
 [node name="aviso_label" type="Label" parent="HUD/control"]
 layout_mode = 0
