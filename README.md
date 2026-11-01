@@ -16,8 +16,6 @@
 
 *Funciona no computador e no celular, sem precisar instalar nada.*
 
-🎬 [Assistir ao vídeo completo de uma partida (1 min)](https://fontessabrina.github.io/ctrl-alt-escape/gameplay.mp4)
-
 </div>
 
 ---
@@ -107,7 +105,7 @@ ctrl-alt-escape/
 ├── Scenes/                  # Telas do jogo (jogo, game over, ranking, configurações, créditos)
 ├── Scripts/                 # Código em GDScript
 ├── export_presets.cfg       # Configuração de exportação para a Web
-└── docs/                    # Versão web do jogo (GitHub Pages), vídeo e imagens deste README
+└── docs/                    # Versão web do jogo (GitHub Pages) e imagens deste README
 ```
 
 **Principais scripts:**
