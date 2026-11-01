@@ -1,7 +1,6 @@
 class_name AudioCredits extends AudioStreamPlayer
 
 
-#Faz com que a música fque em loop
+# Faz a música tocar em loop na tela de créditos
 func _on_finished() -> void:
-	$".".play()
-	
+	play()

@@ -1,30 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://1dism6njthey"]
+[gd_scene load_steps=4 format=3 uid="uid://1dism6njthey"]
 
-[ext_resource type="Script" path="res://Scripts/object_3.gd" id="1_mh13j"]
-[ext_resource type="Texture2D" uid="uid://duu8queum600m" path="res://telefone.png" id="2_o1c85"]
-
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_q1lch"]
-b = Vector2(0, 14)
+[ext_resource type="Script" path="res://Scripts/obstaculo.gd" id="1_obst"]
+[ext_resource type="Texture2D" uid="uid://duu8queum600m" path="res://Assets/inimigos/telefone.png" id="2_o1c85"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5pcv6"]
 size = Vector2(9.46087, 20.0784)
 
-[node name="object_3" type="Node2D"]
-script = ExtResource("1_mh13j")
+[node name="Telefone" type="Area2D"]
+script = ExtResource("1_obst")
+speed = 80.0
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="Telefone" type="Sprite2D" parent="Area2D"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(1.79688, 1.59375)
 texture = ExtResource("2_o1c85")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(6, -24)
-shape = SubResource("SegmentShape2D_q1lch")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1.5, 4)
 scale = Vector2(1.79688, 1.59375)
 shape = SubResource("RectangleShape2D_5pcv6")
-
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

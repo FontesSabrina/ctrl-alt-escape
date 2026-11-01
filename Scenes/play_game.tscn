@@ -1,51 +1,20 @@
-[gd_scene load_steps=15 format=3 uid="uid://bfg0rbm2vvhlt"]
+[gd_scene load_steps=17 format=3 uid="uid://bfg0rbm2vvhlt"]
 
+[ext_resource type="Script" path="res://Scripts/game.gd" id="1_game"]
 [ext_resource type="Texture2D" uid="uid://dcgjy73hwa2db" path="res://Assets/background/background_jogo.png" id="1_s2hxh"]
 [ext_resource type="AudioStream" uid="uid://gy83qrv8jrqj" path="res://Assets/soundtrack/man-is-he-mega-glbml-22045.mp3" id="2_2bdu6"]
 [ext_resource type="Script" path="res://Scripts/soundtrack_game.gd" id="3_mabba"]
+[ext_resource type="Script" path="res://Scripts/spawner.gd" id="3_spawn"]
 [ext_resource type="PackedScene" uid="uid://tiulclqc6ac7" path="res://Prefabs/jogador.tscn" id="4_nqraa"]
 [ext_resource type="PackedScene" uid="uid://cperwmosokrbc" path="res://Prefabs/boss.tscn" id="5_23uxp"]
 [ext_resource type="PackedScene" uid="uid://cpfgjd3prtsdn" path="res://Prefabs/coffe.tscn" id="8_t6i1u"]
-[ext_resource type="Script" path="res://Scripts/control.gd" id="9_e1rsh"]
-[ext_resource type="Texture2D" uid="uid://bp1x5mswj1qcy" path="res://BACKUP1.png" id="10_ryx4f"]
-[ext_resource type="PackedScene" uid="uid://dc3fjhiwqg25j" path="res://Prefabs/object_2.tscn" id="11_2l8d2"]
+[ext_resource type="Script" path="res://Scripts/hud.gd" id="9_e1rsh"]
+[ext_resource type="Texture2D" uid="uid://bp1x5mswj1qcy" path="res://Assets/player_bonus/cafe.png" id="10_ryx4f"]
 [ext_resource type="FontFile" uid="uid://b211kqtlbau0p" path="res://Assets/font/m04b.TTF" id="11_gbkaj"]
 [ext_resource type="PackedScene" uid="uid://qfmnyxmu888u" path="res://Prefabs/object1.tscn" id="11_pq58r"]
+[ext_resource type="PackedScene" uid="uid://dc3fjhiwqg25j" path="res://Prefabs/object_2.tscn" id="11_2l8d2"]
 [ext_resource type="PackedScene" uid="uid://1dism6njthey" path="res://Prefabs/object_3.tscn" id="12_us15c"]
-
-[sub_resource type="GDScript" id="GDScript_ntqgy"]
-script/source = "class_name game1 extends Control
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-	
-func spawn_object1():
-	var object1_scene = preload(\"res://Prefabs/object1.tscn\")
-	var object1 = object1_scene.instantiate()
-	object1.position = Vector2(randf() * 240, 0)  # Ajuste conforme layout  
-	add_child(object1)
-"
-
-[sub_resource type="GDScript" id="GDScript_35qwg"]
-script/source = "extends Node2D
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-"
+[ext_resource type="PackedScene" uid="uid://dwnp00tl1u7b7" path="res://Prefabs/object_4.tscn" id="13_obj4"]
 
 [node name="game" type="Control"]
 layout_mode = 3
@@ -54,76 +23,99 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = SubResource("GDScript_ntqgy")
+mouse_filter = 2
+script = ExtResource("1_game")
 
 [node name="fundo_jogo" type="TextureRect" parent="."]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 texture = ExtResource("1_s2hxh")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_2bdu6")
 autoplay = true
+bus = &"Musica"
 script = ExtResource("3_mabba")
 
 [node name="Level" type="Node2D" parent="."]
-script = SubResource("GDScript_35qwg")
+
+[node name="Spawner" type="Node2D" parent="Level"]
+script = ExtResource("3_spawn")
+cenas = Array[PackedScene]([ExtResource("11_pq58r"), ExtResource("11_2l8d2"), ExtResource("12_us15c"), ExtResource("13_obj4")])
+
+[node name="Coffe" parent="Level" instance=ExtResource("8_t6i1u")]
+position = Vector2(125, 142)
 
 [node name="Jogador" parent="Level" instance=ExtResource("4_nqraa")]
 position = Vector2(130, 224)
 
 [node name="Boss" parent="Level" instance=ExtResource("5_23uxp")]
-position = Vector2(414, 306)
+position = Vector2(-60, -60)
 
-[node name="Coffe" parent="Level" instance=ExtResource("8_t6i1u")]
-position = Vector2(125, 142)
+[node name="HUD" type="CanvasLayer" parent="."]
 
-[node name="HUG" type="CanvasLayer" parent="."]
-
-[node name="control" type="Control" parent="HUG"]
+[node name="control" type="Control" parent="HUD"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 script = ExtResource("9_e1rsh")
 
-[node name="container" type="MarginContainer" parent="HUG/control"]
+[node name="container" type="MarginContainer" parent="HUD/control"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 
-[node name="coffe_container" type="HBoxContainer" parent="HUG/control/container"]
+[node name="coffe_container" type="HBoxContainer" parent="HUD/control/container"]
 layout_mode = 2
 size_flags_vertical = 0
+mouse_filter = 2
 
-[node name="coffe_icon" type="TextureRect" parent="HUG/control/container/coffe_container"]
+[node name="coffe_icon" type="TextureRect" parent="HUD/control/container/coffe_container"]
 layout_mode = 2
 size_flags_vertical = 0
+mouse_filter = 2
 texture = ExtResource("10_ryx4f")
 
-[node name="coffe_couter" type="Label" parent="HUG/control/container/coffe_container"]
-modulate = Color(0.977937, 0.977937, 0.977937, 1)
-light_mask = 2
-visibility_layer = 2
+[node name="coffe_couter" type="Label" parent="HUD/control/container/coffe_container"]
 texture_filter = 1
 layout_mode = 2
-theme_override_constants/line_spacing = 8
-theme_override_constants/shadow_offset_x = 8
-theme_override_constants/shadow_offset_y = 8
 theme_override_constants/outline_size = 8
-theme_override_constants/shadow_outline_size = 8
 theme_override_fonts/font = ExtResource("11_gbkaj")
 theme_override_font_sizes/font_size = 13
 text = "0000"
 
-[node name="object" parent="." instance=ExtResource("11_pq58r")]
-position = Vector2(112, 80)
+[node name="fase_label" type="Label" parent="HUD/control"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 5.0
+offset_right = 170.0
+offset_bottom = 21.0
+mouse_filter = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("11_gbkaj")
+theme_override_font_sizes/font_size = 11
+text = "LEVEL 1"
+horizontal_alignment = 2
 
-[node name="object2" parent="." instance=ExtResource("11_2l8d2")]
-position = Vector2(33, 135)
-
-[node name="object_3" parent="." instance=ExtResource("12_us15c")]
-position = Vector2(204, 124)
+[node name="aviso_label" type="Label" parent="HUD/control"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 180.0
+offset_right = 240.0
+offset_bottom = 210.0
+mouse_filter = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("11_gbkaj")
+theme_override_font_sizes/font_size = 16
+text = "LEVEL 2"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_on_finished"]

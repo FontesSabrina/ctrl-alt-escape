@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://dv33ami1tv3t3"]
 
 [ext_resource type="Script" path="res://Scripts/menu.gd" id="1_eua4s"]
-[ext_resource type="Texture2D" uid="uid://sfmf86cvy2q" path="res://Assets/background.png" id="1_wlcip"]
-[ext_resource type="Texture2D" uid="uid://jdarktrc8a7k" path="res://text1.png" id="2_v4l86"]
+[ext_resource type="Texture2D" uid="uid://sfmf86cvy2q" path="res://Assets/background/background.png" id="1_wlcip"]
+[ext_resource type="Texture2D" uid="uid://jdarktrc8a7k" path="res://Assets/texto/titulo.png" id="2_v4l86"]
 [ext_resource type="Theme" uid="uid://dfi4chfjbpoa2" path="res://Prefabs/default_theme.tres" id="3_1ju3d"]
 [ext_resource type="AudioStream" uid="uid://dujbk4dtyuvht" path="res://Assets/soundtrack/8-bit-music-on-245249.mp3" id="5_qxhyt"]
 [ext_resource type="Script" path="res://Scripts/soundtrack_menu.gd" id="6_h21dq"]
@@ -58,7 +58,17 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_evxqs")
 [node name="start_btn" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_1ju3d")
-text = "start"
+text = "START"
+
+[node name="HSeparator5" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_uyo16")
+theme_override_styles/separator = SubResource("StyleBoxEmpty_evxqs")
+
+[node name="ranking_btn" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_1ju3d")
+text = "RANKING"
 
 [node name="HSeparator2" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -69,6 +79,16 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_evxqs")
 layout_mode = 2
 theme = ExtResource("3_1ju3d")
 text = "CREDITS"
+
+[node name="HSeparator4" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_uyo16")
+theme_override_styles/separator = SubResource("StyleBoxEmpty_evxqs")
+
+[node name="settings_btn" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_1ju3d")
+text = "SETTINGS"
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -82,9 +102,12 @@ text = "QUIT"
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_qxhyt")
 autoplay = true
+bus = &"Musica"
 script = ExtResource("6_h21dq")
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/start_btn" to="." method="_on_start_btn_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/ranking_btn" to="." method="_on_ranking_btn_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/credits_btn" to="." method="_on_credits_btn_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/settings_btn" to="." method="_on_settings_btn_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/quit_btn" to="." method="_on_quit_btn_pressed"]
-[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
+[connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_on_finished"]

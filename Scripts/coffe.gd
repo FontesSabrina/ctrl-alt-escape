@@ -1,40 +1,45 @@
-class_name Coffe extends Area2D  
+class_name Coffe extends Area2D
 
-signal collected  # Sinal emitido quando o café é coletado   
+signal collected # Sinal emitido quando o café é coletado
 
-var spawn_area_max: Vector2  # Ponto máximo para o spawn  
-var margin: int = 30  # Margem para evitar que o café apareça muito próximo das bordas  
-var coffee_size: Vector2 = Vector2(30, 30)  # Ajuste de acordo com o tamanho real do café  
+# Caminho da cena do café. Usa load() e não preload(), porque a cena usa este
+# mesmo script e o preload criava uma referência circular.
+const CENA_CAFE := "res://Prefabs/coffe.tscn"
 
-func _ready() -> void:  
-	spawn_area_max = get_viewport().size  # Define o ponto máximo para o spawn  
+@export var margin: float = 30.0 # Margem para o café não nascer colado nas bordas
+@export var limite_topo: float = 45.0 # Não nascer em cima do contador
+@export var distancia_jogador: float = 50.0 # Não nascer em cima do jogador
 
-func _physics_process(delta: float) -> void:
-	#Mantem as funções do jogo mesmo quando roda em tela expandida
-	var rect:Rect2 = get_viewport_rect()
-	spawn_area_max = rect.size
-	
-# Função para gerar café em um novo local aleatório  
-func spawn_new_coffee():  
-	var new_coffee = preload("res://Prefabs/coffe.tscn").instantiate()  # Caminho para a cena do café  
+var coletado := false # Evita contar o mesmo café duas vezes
 
-	# Define a área segura para aparecer o café  
-	var safe_spawn_area_min = Vector2(margin, margin)  
-	var safe_spawn_area_max = spawn_area_max - Vector2(coffee_size.x + margin, coffee_size.y + margin)  
-	
-	# Gera a posição aleatória dentro da área segura  
-	new_coffee.position = Vector2(  
-		randf_range(safe_spawn_area_min.x, safe_spawn_area_max.x),   
-		randf_range(safe_spawn_area_min.y, safe_spawn_area_max.y)  
-	)  
 
-	get_parent().add_child(new_coffee)  # Adiciona o novo café à cena  
+# Gera um café novo em um local aleatório
+func spawn_new_coffee() -> void:
+	var new_coffee: Node2D = load(CENA_CAFE).instantiate()
+	var tela := get_viewport_rect().size
+	var jogador := get_parent().get_node_or_null("Jogador") as Node2D
 
-func _on_area_entered(area: Area2D) -> void:  
-	print("Área: ", area)  # Imprime a área que entrou em contato  
-	if area.name == "Jogador":  # Verifica se a área é o jogador  
-		emit_signal("collected")  # Emite o sinal de coleta   
-		spawn_new_coffee()  # Gera novo café  
-		queue_free()  # Remove o café atual  
-		Globals.coffe += 1  # Adiciona 1 ao total global  
-		print(Globals.coffe)  # Imprime a nova quantidade total de café
+	var posicao := Vector2.ZERO
+	for tentativa in 10:
+		posicao = Vector2(
+			randf_range(margin, tela.x - margin),
+			randf_range(limite_topo, tela.y - margin)
+		)
+		if jogador == null or posicao.distance_to(jogador.position) > distancia_jogador:
+			break
+
+	new_coffee.position = posicao
+	# Adicionar uma Area2D durante uma colisão dá erro na física,
+	# por isso o call_deferred (adiciona no fim do frame)
+	get_parent().call_deferred("add_child", new_coffee)
+
+
+func _on_area_entered(area: Area2D) -> void:
+	if coletado:
+		return
+	if area is Jogador: # Só o jogador coleta (obstáculos e o chefe não)
+		coletado = true
+		Globals.coffe += 1 # Adiciona 1 ao total global
+		collected.emit()
+		spawn_new_coffee()
+		queue_free() # Remove o café atual

@@ -58,6 +58,7 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_43b1f")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_osmwv")
 autoplay = true
+bus = &"Musica"
 script = ExtResource("5_a4qkw")
 
 [node name="creditos" type="TextureRect" parent="."]
@@ -69,5 +70,4 @@ offset_bottom = 219.0
 texture = ExtResource("6_a6rvm")
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/back_btn" to="." method="_on_back_btn_pressed"]
-[connection signal="toggled" from="MarginContainer/HBoxContainer/VBoxContainer/back_btn" to="." method="_on_back_btn_toggled"]
 [connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_on_finished"]

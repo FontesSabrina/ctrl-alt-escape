@@ -1,23 +1,20 @@
 [gd_scene load_steps=4 format=3 uid="uid://dwnp00tl1u7b7"]
 
+[ext_resource type="Script" path="res://Scripts/obstaculo.gd" id="1_obst"]
 [ext_resource type="Texture2D" uid="uid://dimnb7v8tso0f" path="res://Assets/inimigos/dindin.png" id="1_1bbty"]
-[ext_resource type="Script" path="res://Scripts/object_4.gd" id="1_33j4w"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qsugr"]
 radius = 8.84492
 
-[node name="object_4" type="Node2D"]
-script = ExtResource("1_33j4w")
+[node name="Dindin" type="Area2D"]
+script = ExtResource("1_obst")
+speed = 120.0
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="din_din" type="Sprite2D" parent="Area2D"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(1.26563, 1.21875)
 texture = ExtResource("1_1bbty")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 4)
 scale = Vector2(1.26563, 1.21875)
 shape = SubResource("CircleShape2D_qsugr")
-
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
