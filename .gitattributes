@@ -1,2 +1,8 @@
 # Normalize EOL for all files that Git considers text files.
 * text=auto eol=lf
+
+# A pasta docs/ tem a versão web exportada pela Godot (JavaScript/WASM gerados
+# automaticamente) e as imagens do README. Ela não entra na contagem de
+# linguagens do GitHub, para o repositório aparecer como GDScript.
+docs/** linguist-generated=true
+docs/** linguist-vendored=true

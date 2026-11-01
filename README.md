@@ -12,7 +12,7 @@
 
 <img src="docs/gameplay.gif" width="240" alt="Gameplay do Ctrl + Alt + Escape">
 
-### [▶️ JOGAR NO NAVEGADOR](https://fontessabrina.github.io/ctrl---alt---escape/)
+### [▶️ JOGAR NO NAVEGADOR](https://fontessabrina.github.io/ctrl-alt-escape/)
 
 *Funciona no computador e no celular, sem precisar instalar nada.*
 
@@ -80,7 +80,7 @@ Liga e desliga a música, ajusta o volume e ativa a tela cheia. As escolhas fica
 
 ## 🌐 Jogar online
 
-👉 **[fontessabrina.github.io/ctrl---alt---escape](https://fontessabrina.github.io/ctrl---alt---escape/)**
+👉 **[fontessabrina.github.io/ctrl-alt-escape](https://fontessabrina.github.io/ctrl-alt-escape/)**
 
 A versão web fica na pasta `docs/` e é publicada pelo **GitHub Pages**. O ranking e as configurações ficam salvos no navegador de cada pessoa.
 
@@ -89,7 +89,7 @@ A versão web fica na pasta `docs/` e é publicada pelo **GitHub Pages**. O rank
 1. Instale a **[Godot Engine 4.4](https://godotengine.org/download)** ou mais recente.
 2. Baixe este repositório: botão verde **Code → Download ZIP**, ou:
    ```bash
-   git clone https://github.com/FontesSabrina/ctrl---alt---escape.git
+   git clone https://github.com/FontesSabrina/ctrl-alt-escape.git
    ```
 3. Na Godot, clique em **Import** e selecione o arquivo `project.godot` (ou o `.zip` baixado).
 4. Aperte **F5** (ou o botão ▶️) para jogar.
@@ -97,7 +97,7 @@ A versão web fica na pasta `docs/` e é publicada pelo **GitHub Pages**. O rank
 ## 📂 Estrutura do projeto
 
 ```
-ctrl---alt---escape/
+ctrl-alt-escape/
 ├── project.godot            # Configurações do projeto (tela, cena inicial, autoload)
 ├── default_bus_layout.tres  # Canal de áudio "Musica"
 ├── Assets/                  # Imagens, fonte, músicas e ícones
@@ -140,6 +140,14 @@ ctrl---alt---escape/
 ## 👩‍💻 Autoria
 
 Desenvolvido por **[Sabrina Fontes](https://github.com/FontesSabrina)**, estudante de Gestão da Tecnologia da Informação.
+
+## 🎵 Créditos
+
+| Recurso | Origem |
+|---|---|
+| Músicas (menu, jogo e créditos) | Trilhas 8-bit da **[Pixabay](https://pixabay.com/music/)**, sob a [Licença de Conteúdo da Pixabay](https://pixabay.com/service/license-summary/) |
+| Fonte pixel | **M04 Fatal Fury Black**, por Neko/MIFFIES |
+| Engine | **[Godot Engine](https://godotengine.org/)** (licença MIT) |
 
 ---
 
