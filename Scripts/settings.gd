@@ -1,18 +1,19 @@
 class_name Settings extends Control
 ## Tela de configurações: liga/desliga música, volume e tela cheia.
-## Tudo é salvo automaticamente pelo Globals.
+## Tudo fica dentro da tela azul do monitor desenhado no fundo.
+## As escolhas são salvas automaticamente pelo Globals.
 
 const PASSO_VOLUME := 0.1 # Quanto o volume muda a cada clique no DOWN ou UP
 
-@onready var musica_btn: Button = $MarginContainer/VBoxContainer/musica_btn
-@onready var volume_label: Label = $MarginContainer/VBoxContainer/volume_label
-@onready var menos_btn: Button = $MarginContainer/VBoxContainer/volume_box/menos_btn
-@onready var mais_btn: Button = $MarginContainer/VBoxContainer/volume_box/mais_btn
-@onready var tela_cheia_btn: Button = $MarginContainer/VBoxContainer/tela_cheia_btn
+@onready var musica_btn: Button = $Tela/musica_btn
+@onready var volume_label: Label = $Tela/volume_box/volume_label
+@onready var menos_btn: Button = $Tela/volume_box/menos_btn
+@onready var mais_btn: Button = $Tela/volume_box/mais_btn
+@onready var tela_cheia_btn: Button = $Tela/tela_cheia_btn
 
 
 func _ready() -> void:
-	# No celular não existe "janela", então esconde o botão de tela cheia
+	# No celular e no navegador não existe "janela", então esconde o botão de tela cheia
 	if OS.has_feature("mobile") or OS.has_feature("web"):
 		tela_cheia_btn.hide()
 	_atualizar_textos()
@@ -20,7 +21,7 @@ func _ready() -> void:
 
 func _atualizar_textos() -> void:
 	musica_btn.text = "MUSIC ON" if Globals.musica_ligada else "MUSIC OFF"
-	volume_label.text = "VOLUME %d" % roundi(Globals.volume_musica * 100)
+	volume_label.text = "VOL %d" % roundi(Globals.volume_musica * 100)
 	tela_cheia_btn.text = "FULLSCREEN ON" if Globals.tela_cheia else "FULLSCREEN OFF"
 	# Sem música, os botões de volume ficam desativados
 	menos_btn.disabled = not Globals.musica_ligada or Globals.volume_musica <= 0.0

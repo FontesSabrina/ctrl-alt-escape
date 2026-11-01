@@ -10,7 +10,7 @@
 [sub_resource type="LabelSettings" id="LabelSettings_titulo"]
 font = ExtResource("4_font")
 font_size = 16
-outline_size = 6
+outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
 [node name="Settings" type="Control"]
@@ -30,66 +30,76 @@ offset_bottom = 427.0
 texture = ExtResource("2_bg")
 expand_mode = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="tela_monitor" type="ColorRect" parent="."]
 layout_mode = 0
-offset_right = 240.0
-offset_bottom = 427.0
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_right = 30
+offset_left = 39.0
+offset_top = 147.0
+offset_right = 208.0
+offset_bottom = 240.0
+mouse_filter = 2
+color = Color(0.0588235, 0.482353, 1, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-layout_mode = 2
-size_flags_vertical = 4
-theme_override_constants/separation = 10
+[node name="Tela" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 151.0
+offset_right = 202.0
+offset_bottom = 236.0
+theme_override_constants/separation = 6
+alignment = 1
 
-[node name="titulo" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="titulo" type="Label" parent="Tela"]
 layout_mode = 2
 text = "SETTINGS"
 label_settings = SubResource("LabelSettings_titulo")
 horizontal_alignment = 1
 
-[node name="musica_btn" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="musica_btn" type="Button" parent="Tela"]
+custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
-theme_override_font_sizes/font_size = 11
+theme_override_font_sizes/font_size = 8
 text = "MUSIC ON"
 
-[node name="volume_label" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="volume_box" type="HBoxContainer" parent="Tela"]
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 6
-theme_override_fonts/font = ExtResource("4_font")
-theme_override_font_sizes/font_size = 11
-text = "VOLUME 80"
-horizontal_alignment = 1
+theme_override_constants/separation = 4
 
-[node name="volume_box" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="menos_btn" type="Button" parent="Tela/volume_box"]
+custom_minimum_size = Vector2(44, 16)
 layout_mode = 2
-theme_override_constants/separation = 8
-
-[node name="menos_btn" type="Button" parent="MarginContainer/VBoxContainer/volume_box"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 11
+theme_override_font_sizes/font_size = 8
 text = "DOWN"
 
-[node name="mais_btn" type="Button" parent="MarginContainer/VBoxContainer/volume_box"]
+[node name="volume_label" type="Label" parent="Tela/volume_box"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 11
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("4_font")
+theme_override_font_sizes/font_size = 8
+text = "VOL 80"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="mais_btn" type="Button" parent="Tela/volume_box"]
+custom_minimum_size = Vector2(44, 16)
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
 text = "UP"
 
-[node name="tela_cheia_btn" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="tela_cheia_btn" type="Button" parent="Tela"]
+custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
-theme_override_font_sizes/font_size = 11
+theme_override_font_sizes/font_size = 8
 text = "FULLSCREEN OFF"
 
-[node name="espaco" type="Control" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 10)
-layout_mode = 2
-
-[node name="back_btn" type="Button" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
+[node name="back_btn" type="Button" parent="."]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 350.0
+offset_right = 170.0
+offset_bottom = 374.0
 theme_override_font_sizes/font_size = 11
 text = "BACK"
 
@@ -99,9 +109,9 @@ autoplay = true
 bus = &"Musica"
 script = ExtResource("6_loop")
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/musica_btn" to="." method="_on_musica_btn_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/volume_box/menos_btn" to="." method="_on_menos_btn_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/volume_box/mais_btn" to="." method="_on_mais_btn_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/tela_cheia_btn" to="." method="_on_tela_cheia_btn_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/back_btn" to="." method="_on_back_btn_pressed"]
+[connection signal="pressed" from="Tela/musica_btn" to="." method="_on_musica_btn_pressed"]
+[connection signal="pressed" from="Tela/volume_box/menos_btn" to="." method="_on_menos_btn_pressed"]
+[connection signal="pressed" from="Tela/volume_box/mais_btn" to="." method="_on_mais_btn_pressed"]
+[connection signal="pressed" from="Tela/tela_cheia_btn" to="." method="_on_tela_cheia_btn_pressed"]
+[connection signal="pressed" from="back_btn" to="." method="_on_back_btn_pressed"]
 [connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_on_finished"]
