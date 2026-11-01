@@ -16,6 +16,8 @@
 
 *Funciona no computador e no celular, sem precisar instalar nada.*
 
+🎬 [Assistir ao vídeo completo de uma partida (1 min)](https://fontessabrina.github.io/ctrl-alt-escape/gameplay.mp4)
+
 </div>
 
 ---
@@ -72,9 +74,9 @@ Liga e desliga a música, ajusta o volume e ativa a tela cheia. As escolhas fica
 |:---:|:---:|:---:|:---:|
 | <img src="docs/menu.png" width="160"> | <img src="docs/fase1.png" width="160"> | <img src="docs/chefe_chegando.png" width="160"> | <img src="docs/chefe_perseguindo.png" width="160"> |
 
-| Novo recorde | Ranking | Configurações |
-|:---:|:---:|:---:|
-| <img src="docs/game_over_recorde.png" width="160"> | <img src="docs/ranking.png" width="160"> | <img src="docs/configuracoes.png" width="160"> |
+| Fase 3 | Novo recorde | Ranking | Configurações |
+|:---:|:---:|:---:|:---:|
+| <img src="docs/fase3.png" width="160"> | <img src="docs/game_over_recorde.png" width="160"> | <img src="docs/ranking.png" width="160"> | <img src="docs/configuracoes.png" width="160"> |
 
 </div>
 
@@ -105,7 +107,7 @@ ctrl-alt-escape/
 ├── Scenes/                  # Telas do jogo (jogo, game over, ranking, configurações, créditos)
 ├── Scripts/                 # Código em GDScript
 ├── export_presets.cfg       # Configuração de exportação para a Web
-└── docs/                    # Versão web do jogo (GitHub Pages) e imagens deste README
+└── docs/                    # Versão web do jogo (GitHub Pages), vídeo e imagens deste README
 ```
 
 **Principais scripts:**
