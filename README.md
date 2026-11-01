@@ -12,6 +12,10 @@
 
 <img src="docs/gameplay.gif" width="240" alt="Gameplay do Ctrl + Alt + Escape">
 
+### [▶️ JOGAR NO NAVEGADOR](https://fontessabrina.github.io/ctrl---alt---escape/)
+
+*Funciona no computador e no celular, sem precisar instalar nada.*
+
 </div>
 
 ---
@@ -74,6 +78,12 @@ Liga e desliga a música, ajusta o volume e ativa a tela cheia. As escolhas fica
 
 </div>
 
+## 🌐 Jogar online
+
+👉 **[fontessabrina.github.io/ctrl---alt---escape](https://fontessabrina.github.io/ctrl---alt---escape/)**
+
+A versão web fica na pasta `docs/` e é publicada pelo **GitHub Pages**. O ranking e as configurações ficam salvos no navegador de cada pessoa.
+
 ## 🚀 Como abrir o projeto
 
 1. Instale a **[Godot Engine 4.4](https://godotengine.org/download)** ou mais recente.
@@ -94,7 +104,8 @@ ctrl---alt---escape/
 ├── Prefabs/                 # Cenas reutilizáveis (jogador, chefe, café, obstáculos, menu)
 ├── Scenes/                  # Telas do jogo (jogo, game over, ranking, configurações, créditos)
 ├── Scripts/                 # Código em GDScript
-└── docs/                    # Imagens usadas neste README
+├── export_presets.cfg       # Configuração de exportação para a Web
+└── docs/                    # Versão web do jogo (GitHub Pages) e imagens deste README
 ```
 
 **Principais scripts:**
@@ -123,9 +134,20 @@ ctrl---alt---escape/
   - **ranking** Top 10 com nome estilo fliperama;
   - tela de **configurações** com áudio, volume e tela cheia;
   - personagem com tamanho fixo, para dar para passar entre os objetos;
-  - limpeza do repositório (arquivos temporários e duplicados).
+  - limpeza do repositório (arquivos temporários e duplicados);
+  - versão **web**, jogável direto no navegador.
 
 ## 👩‍💻 Autoria
 
 Desenvolvido por **[Sabrina Fontes](https://github.com/FontesSabrina)**, estudante de Gestão da Tecnologia da Informação.
 
+---
+
+<details>
+<summary>🔧 Como atualizar a versão web</summary>
+
+1. Na Godot, vá em **Projeto → Exportar…** e escolha o preset **Web** (os modelos de exportação precisam estar instalados).
+2. Clique em **Exportar Projeto**, mantendo o caminho `docs/index.html`.
+3. Faça commit e push. Em 1 ou 2 minutos o GitHub Pages atualiza o jogo.
+
+</details>

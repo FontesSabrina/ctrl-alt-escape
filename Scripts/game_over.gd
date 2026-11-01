@@ -26,6 +26,10 @@ func _ready() -> void:
 	# senão ela sumia antes de aparecer na tela.)
 	pontuacao.text = "CAFES %04d\nLEVEL %d" % [Globals.coffe, Globals.fase]
 
+	# No navegador não dá para "fechar" o jogo, então o botão QUIT some
+	if OS.has_feature("web"):
+		$Botoes/QUIT.hide()
+
 	if Globals.entra_no_ranking():
 		botoes.hide()
 		nome_box.show()

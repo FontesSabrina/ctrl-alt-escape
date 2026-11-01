@@ -1,6 +1,13 @@
 class_name MainMenu extends Control
 
 
+func _ready() -> void:
+	# No navegador não dá para "fechar" o jogo, então o botão QUIT some
+	if OS.has_feature("web"):
+		$MarginContainer/HBoxContainer/VBoxContainer/quit_btn.hide()
+		$MarginContainer/HBoxContainer/VBoxContainer/HSeparator.hide()
+
+
 # Linka o botão Start para a tela do jogo
 func _on_start_btn_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/play_game.tscn")
